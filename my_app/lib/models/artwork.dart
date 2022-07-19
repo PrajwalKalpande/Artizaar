@@ -1,10 +1,12 @@
-class ArtworkModel {
+class Artwork {
+  String? sId;
   String? username;
   String? art;
   String? profilePicture;
-  SizeModel? size;
+  Size? size;
   String? material;
-  DetailsModel? details;
+  Details? details;
+  String? description;
   bool? forSell;
   int? price;
   int? currentbid;
@@ -13,18 +15,21 @@ class ArtworkModel {
   List<String>? comments;
   int? shares;
   int? saves;
-  String? sId;
   String? createdAt;
   String? updatedAt;
+  String? title;
   int? iV;
   
-  ArtworkModel(
-      {this.username,
+  Artwork(
+      {this.sId,
+      this.title,
+      this.username,
       this.art,
       this.profilePicture,
       this.size,
       this.material,
       this.details,
+      this.description,
       this.forSell,
       this.price,
       this.currentbid,
@@ -33,19 +38,21 @@ class ArtworkModel {
       this.comments,
       this.shares,
       this.saves,
-      this.sId,
       this.createdAt,
       this.updatedAt,
       this.iV});
 
-  ArtworkModel.fromJson(Map<String, dynamic> json) {
+  Artwork.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
     username = json['username'];
     art = json['art'];
+    description = json['description'];
+    title = json['title'];
     profilePicture = json['profilePicture'];
-    size = json['size'] != null ? new SizeModel.fromJson(json['size']) : null;
+    size = json['size'] != null ? new Size.fromJson(json['size']) : null;
     material = json['material'];
     details =
-        json['details'] != null ? new DetailsModel.fromJson(json['details']) : null;
+        json['details'] != null ? new Details.fromJson(json['details']) : null;
     forSell = json['forSell'];
     price = json['price'];
     currentbid = json['currentbid'];
@@ -64,7 +71,6 @@ class ArtworkModel {
     }
     shares = json['shares'];
     saves = json['saves'];
-    sId = json['_id'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
@@ -72,6 +78,9 @@ class ArtworkModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['description']= this.description;
+    data['title'] = this.title;
     data['username'] = this.username;
     data['art'] = this.art;
     data['profilePicture'] = this.profilePicture;
@@ -80,21 +89,20 @@ class ArtworkModel {
     }
     data['material'] = this.material;
     if (this.details != null) {
-      data['details'] = this.details ;
+      data['details'] = this.details!.toJson();
     }
     data['forSell'] = this.forSell;
     data['price'] = this.price;
     data['currentbid'] = this.currentbid;
     if (this.tags != null) {
-      data['tags'] = this.tags ;
+      data['tags'] = this.tags!.toList();
     }
     data['likes'] = this.likes;
     if (this.comments != null) {
-      data['comments'] = this.comments!.map((v) => v).toList();
+      data['comments'] = this.comments!.toList();
     }
     data['shares'] = this.shares;
     data['saves'] = this.saves;
-    data['_id'] = this.sId;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
@@ -102,13 +110,13 @@ class ArtworkModel {
   }
 }
 
-class SizeModel {
+class Size {
   int? height;
   int? width;
 
-  SizeModel({this.height, this.width});
+  Size({this.height, this.width});
 
-  SizeModel.fromJson(Map<String, dynamic> json) {
+  Size.fromJson(Map<String, dynamic> json) {
     height = json['height'];
     width = json['width'];
   }
@@ -121,13 +129,13 @@ class SizeModel {
   }
 }
 
-class DetailsModel {
+class Details {
   String? subject;
   String? medium;
 
-  DetailsModel({this.subject, this.medium});
+  Details({this.subject, this.medium});
 
-  DetailsModel.fromJson(Map<String, dynamic> json) {
+  Details.fromJson(Map<String, dynamic> json) {
     subject = json['subject'];
     medium = json['medium'];
   }
@@ -139,30 +147,3 @@ class DetailsModel {
     return data;
   }
 }
-//INSTANCE OF ABOVE CLASS
-// {
-//     "username": "batman",
-//     "art": "Artwork",
-//     "profilePicture": "https://firebasestorage.googleapis.com/v0/b/artwork-gallery-ab602.appspot.com/o/images%2Fbeach.jpeg?alt=media&token=76c27891-0904-4b5e-82d2-ed97329a9cad",
-//     "size": {
-//         "height": 18,
-//         "width": 24
-//     },
-//     "material": "Canvas",
-//     "details": {
-//         "subject": "Nature",
-//         "medium": "Oil Painting"
-//     },
-//     "forSell": true,
-//     "price": 1000,
-//     "currentbid": 0,
-//     "tags": [],
-//     "likes": 0,
-//     "comments": [],
-//     "shares": 0,
-//     "saves": 0,
-//     "_id": "62b4638335debed56326bdad",
-//     "createdAt": "2022-06-23T12:58:43.408Z",
-//     "updatedAt": "2022-06-23T12:58:43.408Z",
-//     "__v": 0
-// }

@@ -7,12 +7,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var uid = require('uid-safe');
 const popularArtworksRouter = require('./routes/popularArtworks');
- 
+const artworkRouter  = require('./routes/artwork');
 const { default: mongoose } = require('mongoose');
 
 const app = express();
-mongoose.connect(process.env.DB_URL,{dbName:"FlutterBackend"}).then(()=>{console.log("Connected to DB")});
-
+let connected = false;
+ 
+  mongoose.connect(process.env.DB_URL,{dbName:"FlutterBackend"}).then(()=>{connected=true;
+    console.log("Connected to DB")}).
+catch((error)=>{connected = false;
+  console.log(error)});
+ 
 app.disable('etag');
 
 var cors = require('cors');
@@ -31,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());  
 
 app.use('/api/popularArtworks', popularArtworksRouter);
-
+app.use('/api/artwork',artworkRouter);
 // app.all("/dashboard", (req, res, next) => {
 //     res.send('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <p> Hi , this is ur test dashboard ')
 // })

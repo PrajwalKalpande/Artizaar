@@ -18,30 +18,32 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SizedBox(
-          height: 100,
-            width: 400,
-            child: Container(
-              padding: EdgeInsets.only(top:Dimensions.height10*0.4,bottom: Dimensions.height10*0.4),
-              color: bgcolor,
-                child: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(right:Dimensions.width5),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.mainColor,
-                    ),
-                    child: IconButton(
-                      onPressed: onClick,
-                      icon: Icon(Icons.person_rounded,
-                          color: Color.fromARGB(255, 82, 6, 31)),
-                      splashColor: Color.fromARGB(97, 255, 255, 255),
-                    )),
-                Text("prajwalkalpande3",
-                    style: GoogleFonts.workSans(color: AppColors.mainColor))
-              ],
-            ))));
+   void getProfile(){
+    print("Profile needed");
+   }
+    return   Row(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(
+                                      top: Dimensions.height10 * 0.7,
+                                      bottom: Dimensions.height10 * 0.7,
+                                      right: Dimensions.width5*1),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: AppColors.mainColor,
+                                  ),
+                                  child: IconButton(
+                                    onPressed: getProfile,
+                                    icon: Icon(Icons.person_rounded,
+                                        color: Color.fromARGB(255, 82, 6, 31)),
+                                    splashColor:
+                                        Color.fromARGB(97, 255, 255, 255),
+                                  )),
+                              Text("prajwalkalpande3",
+                                  style: GoogleFonts.workSans(
+                                      fontSize: Dimensions.height25 * 0.6,
+                                      color: AppColors.mainColor))
+                            ],
+                          );
   }
 }

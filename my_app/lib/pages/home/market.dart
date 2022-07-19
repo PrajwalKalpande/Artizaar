@@ -13,6 +13,7 @@ class Market extends StatefulWidget {
 }
 
 class _MarketState extends State<Market> {
+ 
   @override
   Widget build(BuildContext context) {
     return SafeArea(

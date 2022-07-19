@@ -18,6 +18,10 @@ const ArtworkSchema =new mongoose.Schema(
             require:true
             , 
         },
+        title:{
+          type:String,
+          require:true
+        },
  
           profilePicture: {
             type: String,
@@ -82,4 +86,5 @@ const ArtworkSchema =new mongoose.Schema(
 
 );
 
-module.exports = mongoose.model("Artwork", ArtworkSchema)
+module.exports  = mongoose.model("Artwork", ArtworkSchema)
+ 

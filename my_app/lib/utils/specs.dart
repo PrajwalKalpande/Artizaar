@@ -8,18 +8,21 @@ class Spec extends StatelessWidget {
       {Key? key,
       required this.specification,
       required this.value,
+      this.margintop=1,
       this.textsize = 17,this.color=AppColors.highlight})
       : super(key: key);
   final String specification;
   final Color color;
+  final double margintop;
   final String value;
   final double textsize;
   @override
   Widget build(BuildContext context) {
     return Container(
+
       margin: EdgeInsets.only(
-          top: Dimensions.height10, bottom: Dimensions.height10 * 0.05),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          top: Dimensions.height10*margintop, bottom: Dimensions.height10 * 0.05),
+      child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
         Text(
           specification + " : ",
           style: GoogleFonts.ubuntuMono(fontSize: textsize),
